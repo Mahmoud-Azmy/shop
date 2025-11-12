@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/models/product_model.dart';
 
 class ProductController extends ChangeNotifier {
-  final List<ProductModel> products = [
+  final List<ProductModel> productsList = [
     ProductModel(
       name: 'Product 1',
       price: 29.99,
@@ -39,7 +39,5 @@ class ProductController extends ChangeNotifier {
       description: 'Description for Product 6',
       imageUrl: 'assets/iphone.png',
     ),
-
-    // Add more products as needed
   ];
 }

@@ -5,8 +5,10 @@ import 'package:shopping_app/login_screen.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ProductController())],
+    ChangeNotifierProvider(
+      create: (_) {
+        return ProductController();
+      },
       child: const MyApp(),
     ),
   );

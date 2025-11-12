@@ -14,12 +14,13 @@ class DetailsScreen extends StatelessWidget {
         actions: [Icon(Icons.settings, size: 28)],
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 250,
             width: double.infinity,
             color: Colors.grey[300],
-            child: Icon(Icons.image, size: 100, color: Colors.grey[600]),
+            child: Image.asset(product.imageUrl),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -32,7 +33,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  '\$${product.price}',
+                  '\$ ${product.price}',
                   style: TextStyle(fontSize: 20, color: Colors.green),
                 ),
                 SizedBox(height: 16),
