@@ -19,8 +19,13 @@ class ProductCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(imgUrl, height: 100),
-            Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
+            Image.network(imgUrl, height: 100),
+            Text(
+              name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             Text(price.toString(), style: TextStyle(color: Colors.grey)),
           ],
         ),

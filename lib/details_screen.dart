@@ -3,7 +3,7 @@ import 'package:shopping_app/models/product_model.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.product});
-  final ProductModel product;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,22 @@ class DetailsScreen extends StatelessWidget {
             height: 250,
             width: double.infinity,
             color: Colors.grey[300],
-            child: Image.asset(product.imageUrl),
+            child: Image.network(
+              product.imageUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  height: 250,
+                  width: double.infinity,
+                  color: Colors.grey[300],
+                  child: Icon(Icons.image_not_supported, size: 50),
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(child: CircularProgressIndicator());
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
