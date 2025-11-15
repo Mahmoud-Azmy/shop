@@ -16,42 +16,36 @@ class ProductsScreen extends StatelessWidget {
         title: Text('Products'),
         actions: [Icon(Icons.search, size: 28)],
       ),
-      body: Consumer(
-        builder: (context, ProductController controller, _) {
-          if (controller.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          } else if (controller.errorMessage != null) {
-            return Center(child: Text('Error: ${controller.errorMessage}'));
-          } else {
-            return GridView.builder(
-              itemCount: controller.products.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.2,
-              ),
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return DetailsScreen(
-                            product: controller.products[index],
-                          );
-                        },
-                      ),
+      body: GridView.builder(
+        itemCount: context.read<ProductController>().pList.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1.2,
+        ),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DetailsScreen(
+                      product: context.read<ProductController>().pList[index],
                     );
                   },
-                  child: ProductCard(
-                    name: controller.products[index].name,
-                    price: controller.products[index].price.toDouble(),
-                    imgUrl: controller.products[index].imageUrl,
-                  ),
-                );
-              },
-            );
-          }
+                ),
+              );
+            },
+            child: ProductCard(
+              name: context.watch<ProductController>().pList[index].name,
+              price: context
+                  .watch<ProductController>()
+                  .pList[index]
+                  .price
+                  .toDouble(),
+              imgUrl: context.watch<ProductController>().pList[index].imageUrl,
+            ),
+          );
         },
       ),
     );

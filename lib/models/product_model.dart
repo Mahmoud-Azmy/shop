@@ -1,17 +1,3 @@
-class ProductResponse {
-  final List<Product> response;
-
-  ProductResponse({required this.response});
-
-  factory ProductResponse.fromJson(Map<String, dynamic> json) {
-    return ProductResponse(
-      response: (json['response'] as List)
-          .map((item) => Product.fromJson(item))
-          .toList(),
-    );
-  }
-}
-
 class Product {
   final int id;
   final String name;
