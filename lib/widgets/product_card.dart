@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({
+class BuildProductCard extends StatelessWidget {
+  const BuildProductCard({
     super.key,
     required this.name,
     required this.price,

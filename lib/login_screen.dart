@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/products_screen.dart';
+import 'package:shopping_app/widgets/custom_button.dart';
+import 'package:shopping_app/widgets/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -39,7 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
                 ),
                 SizedBox(height: 16),
-                TextFormField(
+                CustomTextFiled(
+                  hintText: 'email',
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Enter your email';
@@ -49,20 +52,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    // labelText: 'Email',
-                    hintText: 'Enter your email',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    fillColor: const Color.fromARGB(255, 231, 227, 227),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
                 ),
                 SizedBox(height: 16),
-                TextFormField(
+                CustomTextFiled(
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 6) {
                       return 'Password must be at least 6 char';
@@ -70,33 +62,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                   obscureText: isObscure,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        isObscure = !isObscure;
-                        setState(() {});
-                      },
-                      icon: Icon(
-                        isObscure ? Icons.visibility_off : Icons.visibility,
-                      ),
-                    ),
-                    hintText: 'Enter your password',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    fillColor: const Color.fromARGB(255, 231, 227, 227),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide.none,
-                    ),
+                  hintText: 'Password',
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      isObscure = !isObscure;
+                      setState(() {});
+                    },
+                    icon: Icon(Icons.visibility),
                   ),
                 ),
                 SizedBox(height: 16),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 100),
-                  ),
+                CustomButton(
+                  formKey: formKey,
+                  text: 'Login',
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       Navigator.pushAndRemoveUntil(
@@ -110,8 +88,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     }
                   },
-                  child: Text('Login'),
                 ),
+                SizedBox(height: 20),
               ],
             ),
           ),

@@ -17,7 +17,7 @@ class ProductsScreen extends StatelessWidget {
         actions: [Icon(Icons.search, size: 28)],
       ),
       body: GridView.builder(
-        itemCount: context.read<ProductController>().pList.length,
+        itemCount: context.read<ProductProvider>().porductList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1.2,
@@ -30,20 +30,25 @@ class ProductsScreen extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) {
                     return DetailsScreen(
-                      product: context.read<ProductController>().pList[index],
+                      product: context
+                          .read<ProductProvider>()
+                          .porductList[index],
                     );
                   },
                 ),
               );
             },
-            child: ProductCard(
-              name: context.watch<ProductController>().pList[index].name,
+            child: BuildProductCard(
+              name: context.watch<ProductProvider>().porductList[index].name,
               price: context
-                  .watch<ProductController>()
-                  .pList[index]
+                  .watch<ProductProvider>()
+                  .porductList[index]
                   .price
                   .toDouble(),
-              imgUrl: context.watch<ProductController>().pList[index].imageUrl,
+              imgUrl: context
+                  .watch<ProductProvider>()
+                  .porductList[index]
+                  .imageUrl,
             ),
           );
         },
