@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-    required this.formKey,
-    required this.text,
-    this.onPressed,
-  });
+  const CustomButton({super.key, required this.text, this.onPressed});
 
-  final GlobalKey<FormState> formKey;
   final String text;
   final void Function()? onPressed;
 
