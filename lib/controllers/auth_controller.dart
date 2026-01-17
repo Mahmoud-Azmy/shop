@@ -11,7 +11,7 @@ class AuthController extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final success = await _dioService.loginUser(
+    final loginResponse = await _dioService.loginUser(
       email: email,
       password: password,
     );
@@ -19,7 +19,7 @@ class AuthController extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
 
-    return success;
+    return loginResponse.status;
   }
 
   Future<bool> register({

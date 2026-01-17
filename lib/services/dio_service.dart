@@ -24,26 +24,24 @@ class DioService {
   }
 
   /// Login User
-  Future<bool> loginUser({
+  Future<AuthResponse> loginUser({
     required String email,
     required String password,
   }) async {
     try {
-      final loginRequest = LoginRequest(email: email, password: password);
-
       final response = await dio.post(
         '${Consts.apiBaseUrl}${Consts.loginEndpoint}',
-        data: loginRequest.toJson(),
+        data: {'Email': email, 'Password': password},
       );
 
       if (response.statusCode == 200) {
         final authResponse = AuthResponse.fromJson(response.data);
-        return authResponse.status;
+        return authResponse;
       }
-      return false;
+      throw Exception('Failed to login');
     } catch (e) {
       print('Login Error: $e');
-      return false;
+      throw Exception('Login failed');
     }
   }
 
