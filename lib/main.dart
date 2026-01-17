@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app/controllers/auth_controller.dart';
 import 'package:shopping_app/controllers/product_controller.dart';
 import 'package:shopping_app/login_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) {
-        return ProductController();
-      },
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProductController()),
+        ChangeNotifierProvider(create: (_) => AuthController()),
+      ],
       child: const MyApp(),
     ),
   );
