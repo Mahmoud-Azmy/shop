@@ -27,7 +27,7 @@ class ProductsScreen extends StatelessWidget {
               itemCount: controller.products.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 1.2,
+                childAspectRatio: .9,
               ),
               itemBuilder: (context, index) {
                 return GestureDetector(
